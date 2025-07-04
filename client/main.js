@@ -26,7 +26,7 @@
 
 let val = ''
 let localId = ''
-let locaStream = ''
+let localStream = null
 let remoteId = ''
 let currentConnnection = null
 let audio = null;
@@ -98,7 +98,7 @@ document.getElementById('audio').addEventListener('click', () => {
           if (currentCall) {
                 currentCall.close()
             }
-            locaStream = stream
+            localStream = stream
         if (currentConnnection) {
          
             const call  = peer.call(remoteId, stream)
@@ -121,8 +121,8 @@ peer.on('call', call=>{
     if (currentCall) {
         currentCall.close()
     }
-    if (locaStream) {
-        call.answer(locaStream)
+    if (localStream) {
+        call.answer(localStream)
     }
     currentCall = call
     call.on('stream', remoteStream => {
